@@ -1,30 +1,27 @@
-// sketch.js - purpose and description here
-// Author: Your Name
-// Date:
+// sketch.js - Vector Art, Animation, and Interactivity Experiment
+// Author: Sean Eric So
+// Date: 19/01/2025
 
 // Here is how you might set up an OOP p5.js project
 // Note that p5.js looks for a file called sketch.js
 
 // Constants - User-servicable parts
 // In a longer project I like to put these in a separate file
-const VALUE1 = 1;
-const VALUE2 = 2;
+var tileCount = 15;
+var seed = 0;
+
+var circleAlpha = 130;
+var fillAlpha = 100;
+var circleColour;
+var fillColour;
+var circleSize;
+var fillColourCurrent;
+let angle = 0;
 
 // Globals
 let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
-
-class MyClass {
-    constructor(param1, param2) {
-        this.property1 = param1;
-        this.property2 = param2;
-    }
-
-    myMethod() {
-        // code to run when method is called
-    }
-}
 
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
@@ -36,44 +33,77 @@ function resizeScreen() {
 
 // setup() function is called once when the program starts
 function setup() {
-  // place our canvas, making it fit our container
-  canvasContainer = $("#canvas-container");
-  let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
-  canvas.parent("canvas-container");
-  // resize canvas is the page is resized
-
-  // create an instance of the class
-  myInstance = new MyClass("VALUE1", "VALUE2");
-
-  $(window).resize(function() {
-    resizeScreen();
-  });
-  resizeScreen();
+  createCanvas(650, 650); //Sets up canvas of (width, height)
+  randomSeed(125);
+  
+  circleColour = color(0, 0, 0, circleAlpha); //RGB for circle
+  fillColourCurrent = 3;
+  fillColour = color(255, 0, 0, fillAlpha)
+  fill(fillColour);
+  
+  setInterval(changeColour, 1000); //Call changeColour() every 1000ms aka 1second
+  
+  rectMode(CENTER);
 }
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
-  background(220);    
-  // call a method on the instance
-  myInstance.myMethod();
+  background(20, 125, 10 + mouseY / 2); //Background Colour
+  
+  translate(width / tileCount / 2, height / tileCount / 2); //Adds uniformity to circle positions
 
-  // Set up rotation for the rectangle
-  push(); // Save the current drawing context
-  translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  fill(234, 31, 81);
-  noStroke();
-  rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  pop(); // Restore the original drawing context
-
-  // The text is not affected by the translate and rotate
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text("p5*", centerHorz - 105, centerVert + 40);
+  randomSeed(seed); //Assigns random seed
+  
+  circleColour = color(mouseX / 2, mouseY / 2, (mouseX / 4) + (mouseY / 4));
+  circleSize = mouseY / 15;
+  
+  stroke(circleColour); //Sets stroke colour
+  
+  strokeWeight(1 + (mouseY / 60)); //Sets stroke width
+  
+  for(var gridX = 0; gridX < tileCount; gridX++){
+    for(var gridY = 0; gridY < tileCount; gridY++){
+      
+      var posX = width / tileCount * gridX;
+      var posY = height / tileCount * gridY;
+      var shiftX = random(-mouseX, mouseX) / 20;
+      var shiftY = random(-mouseX, mouseX) / 20;
+      
+      rect(posX + shiftX, posY + shiftY, circleSize, circleSize);
+    }
+  }
+  
+  translate(width / 2, height / 2);
+  rotate(angle);
+  if(mouseOverCanvas() == true){
+    angle += 0.05; 
+  }
+  rect(0, 0, 500, 500);
 }
 
 // mousePressed() function is called once after every time a mouse button is pressed
 function mousePressed() {
-    // code to run when mouse is pressed
+  seed = random(1000);
+}
+
+function changeColour(){
+  if(fillColourCurrent == 1){
+    fillColour = color(255, 0, 0, fillAlpha);
+    fillColourCurrent = 2;
+  } else if(fillColourCurrent == 2){
+    fillColour = color(0, 255, 0, fillAlpha);
+    fillColourCurrent = 3;
+  } else if(fillColourCurrent == 3){
+    fillColour = color(0, 0, 255, fillAlpha); 
+    fillColourCurrent = 1;
+  }
+  fill(fillColour); //Sets fill colour
+}
+
+function mouseOverCanvas(){
+  if(mouseX > 0 && mouseX <= width && mouseY > 0 && mouseY <= height){
+    return true;
+  } else{
+    return false;
+  }
 }
