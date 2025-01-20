@@ -61,7 +61,7 @@ function setup() {
 function draw() {
   background(20, 125, 10 + mouseY / 2); //Background Colour
   
-  translate(centerHorz - width / tileCount / 2, centerVert - height / tileCount / 2); //Adds uniformity to circle positions
+  translate(width / tileCount / 2, height / tileCount / 2); //Adds uniformity to circle positions
 
   randomSeed(seed); //Assigns random seed
   
@@ -84,7 +84,7 @@ function draw() {
     }
   }
   
-  translate(centerHorz, centerVert);
+  translate(width / 2, height / 2);
   rotate(angle);
   if(mouseOverCanvas() == true){
     angle += 0.05; 
