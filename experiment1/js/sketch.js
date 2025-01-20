@@ -44,7 +44,6 @@ function setup() {
   });
   resizeScreen();
 
-  createCanvas(650, 650); //Sets up canvas of (width, height)
   randomSeed(125);
   
   circleColour = color(0, 0, 0, circleAlpha); //RGB for circle
