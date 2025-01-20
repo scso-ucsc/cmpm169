@@ -22,6 +22,7 @@ let angle = 0;
 let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
+var canvasWidth, canvasHeight;
 
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
@@ -44,6 +45,8 @@ function setup() {
   $(window).resize(function() {
     resizeScreen();
   });
+  canvasWidth = canvasContainer.width();
+  canvasHeight = canvasContainer.height();
 
   randomSeed(125);
   
@@ -61,7 +64,7 @@ function setup() {
 function draw() {
   background(20, 125, 10 + mouseY / 2); //Background Colour
   
-  translate(width / tileCount / 2, height / tileCount / 2); //Adds uniformity to circle positions
+  translate(canvasWidth / tileCount / 2, canvasHeight / tileCount / 2); //Adds uniformity to circle positions
 
   randomSeed(seed); //Assigns random seed
   
@@ -75,8 +78,8 @@ function draw() {
   for(var gridX = 0; gridX < tileCount; gridX++){
     for(var gridY = 0; gridY < tileCount; gridY++){
       
-      var posX = width / tileCount * gridX;
-      var posY = height / tileCount * gridY;
+      var posX = canvasWidth / tileCount * gridX;
+      var posY = canvasHeight / tileCount * gridY;
       var shiftX = random(-mouseX, mouseX) / 20;
       var shiftY = random(-mouseX, mouseX) / 20;
       
@@ -84,7 +87,7 @@ function draw() {
     }
   }
   
-  translate(width / 2, height / 2);
+  translate(canvasWidth / 2, canvasHeight / 2);
   rotate(angle);
   if(mouseOverCanvas() == true){
     angle += 0.05; 
