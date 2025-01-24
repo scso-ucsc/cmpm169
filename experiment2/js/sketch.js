@@ -39,10 +39,10 @@ function resizeScreen() {
 }
 
 function preload(){
-  colourChangeSound = loadSound("../audio/Ice1.mp3");
-  dotSound = loadSound("../audio/pickupCoin.wav");
-  blockSound = loadSound("../audio/hitHurt.wav");
-  snowflakeSound = loadSound("../audio/click.wav");
+  colourChangeSound = loadSound("../../audio/Ice1.mp3");
+  dotSound = loadSound("../../audio/pickupCoin.wav");
+  blockSound = loadSound("../../audio/hitHurt.wav");
+  snowflakeSound = loadSound("../../audio/click.wav");
 }
 
 // setup() function is called once when the program starts
