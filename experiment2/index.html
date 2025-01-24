@@ -34,7 +34,7 @@
 	<main id="content">
 		<section>
 
-			<h1>Experiment X - Subject/Topic</h1>
+			<h1>Experiment 2 - Generative Methods</h1>
 
 			<div class="minor-section">
 				<div id="canvas-container">
@@ -47,17 +47,17 @@
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>For this experiment, my goal was to create a program that automatically generated an artwork using random methods all whilst giving the user some means of controlling it. This involved enabling the user to switch between what shape the program drew via the 1, 2, and 3 keys on the keyboard, and clicking on the canvas to relocate the drawing position and colour of the program. The program can also be paused and played via the spacebar. Additionally, this experiment gave me exposure to audio systems in p5.js as a sound effect will play as the artwork is generating and whenever the user left clicks the mouse.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>In order to implement the aforementioned aspects of my program, I used the random() functions to generate a random value that subsequently determined which direction the artwork would draw at and subsequently place a shape there. The three shape options consist of a circle, a square, and a makeshift snowflake. Whilst the circle and square use the built-in ellipses and rectangle functions of p5.js, the snowflake is drawn using the shape generating functions alongside adjustments to its angle and radius. As for the ability to reset where the artwork drew and what colour is used via the mouse, whenever the mouse is clicked, the positions of the drawing tools is moved to where the mouse is, effectively making the artwork jump between areas on the canvas. A new colour is also generated using the random() function. Audio is handled by p5.js's audio library and works by first preloading the sounds I want to use and playing them at their respective instances. Lastly, there are two global variables that keep track of what shape needs to be generated and whether the program is currently paused. This allows the program to generate the user's desired shape and stop if the user deems it necessary.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>Similar to the previous experiment, I worked alone on this assignment and learnt how to incorporate its features by reviewing what was provided to me online and conducting my own research. The most difficult aspect of this project was adding audio to the project, as this was my first time doing so. In fact, I encountered a lot of errors when I was adding these audio files to my JavaScript folder so that this program would run on GitHub Pages. However, after conducting some research, I was able to overcome this bug, and the program now runs as if it were on the p5.js editor.</p>
 			</div>
 
 		</section>
